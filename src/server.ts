@@ -2,7 +2,6 @@
 import { Server } from 'http';
 import app from './app';
 import config from './config';
-import { database_connection } from './db/mongo.db';
 
 // handle uncaught exception error if any developer take mistake, work it synchronous
 process.on('uncaughtException', error => {
@@ -15,13 +14,10 @@ let server: Server;
 
 const startServer = async () => {
   try {
-    // database connection
-    await database_connection(config.mongo_url as string);
-
     // server listening
     server = app.listen(config.port, () => {
       console.log(
-        `Eid-Ul-Adha-Cow-Seller Application is Running on ${config.port}`
+        `Blog is Running on ${config.port}`
       );
     });
   } catch (error) {
